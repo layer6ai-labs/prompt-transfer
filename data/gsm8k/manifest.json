@@ -1,0 +1,51 @@
+{
+  "task": "gsm8k",
+  "hf_dataset": "openai/gsm8k",
+  "hf_config": "main",
+  "seed": 0,
+  "plan": {
+    "train": 500,
+    "dev": 300,
+    "test": 1000
+  },
+  "files": {
+    "train": {
+      "rows": 500,
+      "sha256": "c614718757554f6030eb55f552d4320a1e5f75277ac26112c69c4e4dd9f9d6c1"
+    },
+    "dev": {
+      "rows": 300,
+      "sha256": "c51454eedf24e355680cf733c10acd74590820139969ecb0ebd38977c70beca0"
+    },
+    "test": {
+      "rows": 1000,
+      "sha256": "4047a4b278cffd2286d2ca6c3021b1ddff5d1fa4f80344703f960c4826276809"
+    }
+  },
+  "base_prompts": {
+    "harness_cot_8shot": {
+      "prompt_id": "4acf6820a8cdff30",
+      "provenance": {
+        "source": "lm-evaluation-harness lm_eval/tasks/gsm8k/gsm8k-cot.yaml",
+        "kind": "shared_prompt"
+      }
+    },
+    "textgrad_zeroshot": {
+      "prompt_id": "1396fb11cb1e6336",
+      "provenance": {
+        "source": "TextGrad arXiv:2406.07496 App. E.1 (initialization)",
+        "kind": "shared_prompt"
+      }
+    }
+  },
+  "scorers": {
+    "strict": {
+      "id": "gsm8k/strict",
+      "source": "lm-evaluation-harness gsm8k-cot.yaml filter_list[strict-match]"
+    },
+    "flexible": {
+      "id": "gsm8k/flexible",
+      "source": "lm-evaluation-harness gsm8k-cot.yaml filter_list[flexible-extract]"
+    }
+  }
+}

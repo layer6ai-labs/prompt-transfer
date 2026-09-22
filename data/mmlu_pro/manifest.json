@@ -1,0 +1,55 @@
+{
+  "task": "mmlu_pro",
+  "hf_dataset": "TIGER-Lab/MMLU-Pro",
+  "hf_config": "default",
+  "seed": 0,
+  "plan": {
+    "train": 500,
+    "dev": 300,
+    "test": 1000
+  },
+  "files": {
+    "train": {
+      "rows": 500,
+      "sha256": "40c4d623ebcb1f3d5d8cdec0f89fbec7476acdb6e56fc689db6c01177d0a3e53"
+    },
+    "dev": {
+      "rows": 300,
+      "sha256": "7265788e41aa48b64dea41690259b0568b0e54bdc9d2c4f47bd518640607da3f"
+    },
+    "test": {
+      "rows": 1000,
+      "sha256": "3a82ddf70a7094168e1a1b1212f4067ff3ad06054ebd37a18fa034b756da8748"
+    },
+    "exemplars": {
+      "rows": 70,
+      "sha256": "0d59ff96d8207aea9ba458e3ee42419399341c30267da5a3adf6ce256714c937"
+    }
+  },
+  "base_prompts": {
+    "official_zeroshot": {
+      "prompt_id": "472d44717914a2c3",
+      "provenance": {
+        "source": "TIGER-AI-Lab/MMLU-Pro cot_prompt_lib/initial_prompt.txt",
+        "kind": "shared_prompt"
+      }
+    },
+    "harness_zeroshot": {
+      "prompt_id": "e5c0d36e3d3d5e87",
+      "provenance": {
+        "source": "lm-evaluation-harness mmlu_pro/_default_template_yaml (scaffold only; the harness relies on 5-shot exemplars)",
+        "kind": "shared_prompt"
+      }
+    }
+  },
+  "scorers": {
+    "strict": {
+      "id": "mmlu_pro/strict",
+      "source": "lm-evaluation-harness mmlu_pro/_default_template_yaml filter_list[custom-extract]"
+    },
+    "permissive": {
+      "id": "mmlu_pro/permissive",
+      "source": "ptx (not from a harness) - loosened counterpart to custom-extract"
+    }
+  }
+}

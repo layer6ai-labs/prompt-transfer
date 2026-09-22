@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: ptx
+Version: 0.1.0
+Summary: Asymmetric prompt transfer: cross-model prompt evaluation matrix
+Requires-Python: >=3.11
+Requires-Dist: datasets>=3.0
+Requires-Dist: pyarrow>=15
+Requires-Dist: pyyaml>=6
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"

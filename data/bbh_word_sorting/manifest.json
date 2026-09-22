@@ -1,0 +1,44 @@
+{
+  "task": "bbh_word_sorting",
+  "hf_dataset": "lukaemon/bbh",
+  "hf_config": "word_sorting",
+  "seed": 0,
+  "plan": {
+    "train": 50,
+    "dev": 100,
+    "test": 100
+  },
+  "files": {
+    "train": {
+      "rows": 50,
+      "sha256": "ade1da7952a21cdec3a8517c3f24948356ae9c06ceb8a1ff77cd2ebebf012f56"
+    },
+    "dev": {
+      "rows": 100,
+      "sha256": "0bacefdaa770811beb17cfcf68d4f4d756592f02412b9983034b868a3418c418"
+    },
+    "test": {
+      "rows": 100,
+      "sha256": "448221627222c8057fab9d8886d49d8cef090048bb63a61f0bd39040a00a39dc"
+    }
+  },
+  "base_prompts": {
+    "harness_cot_zeroshot": {
+      "prompt_id": "38e19c079ad2d86f",
+      "provenance": {
+        "source": "lm-evaluation-harness bbh/cot_zeroshot/word_sorting.yaml",
+        "kind": "shared_prompt"
+      }
+    }
+  },
+  "scorers": {
+    "strict": {
+      "id": "bbh_word_sorting/strict",
+      "source": "lm-evaluation-harness bbh/cot_zeroshot/word_sorting.yaml filter_list[strict-match]"
+    },
+    "flexible": {
+      "id": "bbh_word_sorting/flexible",
+      "source": "lm-evaluation-harness bbh/cot_zeroshot/utils.py WordSortFilter"
+    }
+  }
+}
