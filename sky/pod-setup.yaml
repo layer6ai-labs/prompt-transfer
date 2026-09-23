@@ -1,0 +1,10 @@
+# Build the pinned SGLang venv and fetch executor weights on the
+# prompt-transfer pod (Lambda k8s; it cannot see /layer6share). CPU only.
+# Run from the repo root:
+#   sky exec prompt-transfer sky/pod-setup.yaml -d
+name: ptx-setup
+
+workdir: .
+
+run: |
+  bash serving/setup.sh

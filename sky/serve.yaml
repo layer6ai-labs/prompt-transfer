@@ -1,0 +1,20 @@
+# Serve a layout from serving/models.sh on both GPUs. The job is the servers:
+# it stays RUNNING while they are up; `sky cancel prompt-transfer <job id>`
+# stops them and frees the GPUs. Run from the repo root:
+#   sky exec prompt-transfer sky/serve.yaml -d                  # all4
+#   sky exec prompt-transfer sky/serve.yaml --env LAYOUT=strong -d
+name: ptx-serve
+
+workdir: .
+
+resources:
+  accelerators: H100:2
+
+# DETERMINISTIC=1 makes temperature-0 output independent of batching (checked
+# by sky/smoke.yaml) at ~2.5x lower throughput; set 0 only for throwaway runs.
+envs:
+  LAYOUT: all4
+  DETERMINISTIC: "1"
+
+run: |
+  bash serving/serve.sh "${LAYOUT}"
