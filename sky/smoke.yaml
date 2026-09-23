@@ -1,0 +1,8 @@
+# Smoke-test whatever serve.yaml is running. CPU only. Run from the repo root:
+#   sky exec prompt-transfer sky/smoke.yaml
+name: ptx-smoke
+
+workdir: .
+
+run: |
+  python3 serving/smoke.py

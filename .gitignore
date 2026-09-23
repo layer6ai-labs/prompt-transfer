@@ -1,8 +1,25 @@
+# Python and build artifacts
 __pycache__/
 *.pyc
+*.egg-info/
 .venv/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Split rows are rebuilt by `python -m ptx.data freeze`; only manifests are tracked
+data/**/*.jsonl
+
+# Run outputs
 artifacts/
 results/
-data/**/*.jsonl
-*.egg-info/
+logs/
+*.log
+
+# Local, per-machine files. SkyPilot also skips everything here when it syncs
+# the repo to the pod as a workdir.
+.env
+.vscode/
+.idea/
+.claude/settings.local.json
+.DS_Store
