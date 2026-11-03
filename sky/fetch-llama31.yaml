@@ -1,0 +1,10 @@
+# Put Llama 3.1 8B / 70B-FP8 on the prompt-transfer pod (serving/fetch_llama31.sh).
+# CPU only; scp Meta's config/tokenizer files to ~/ptx/vendor/llama-3.1-official
+# first. Run from the repo root:
+#   sky exec prompt-transfer sky/fetch-llama31.yaml -d
+name: ptx-fetch-llama31
+
+workdir: .
+
+run: |
+  bash serving/fetch_llama31.sh

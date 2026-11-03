@@ -218,6 +218,14 @@ stage for our purposes.
 AIME (30 test questions, far below the power floor), Iris and Heart Disease (150/303, MIPRO
 used them as toys), and the multi-module retrieval tasks.
 
+**Separate retrieval experiments.** The campaign drivers in `experiments/`
+use the external `gepa-artifact` HotpotQA and HoVer multi-hop programs. Their
+retrieval index, four DSPy module instructions, metrics and frozen splits are
+described in [CROSS_MODEL_PILOT.md](CROSS_MODEL_PILOT.md). They are not
+implementations of `ptx.tasks` and should not be compared directly with a
+single-call HotpotQA distractor-context reading-comprehension setup. See
+[experiments/README.md](experiments/README.md) for the external dependencies.
+
 ---
 
 ## Appendix: worked scorer disagreements

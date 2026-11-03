@@ -3,12 +3,15 @@ __pycache__/
 *.pyc
 *.egg-info/
 .venv/
+.venv-*/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 
-# Split rows are rebuilt by `python -m ptx.data freeze`; only manifests are tracked
-data/**/*.jsonl
+# Benchmark datasets and model caches are external inputs.
+data/
+models/
+endpoints.json
 
 # Run outputs
 artifacts/
@@ -18,7 +21,8 @@ logs/
 
 # Local, per-machine files. SkyPilot also skips everything here when it syncs
 # the repo to the pod as a workdir.
-.env
+.env*
+!.env.example
 .vscode/
 .idea/
 .claude/settings.local.json

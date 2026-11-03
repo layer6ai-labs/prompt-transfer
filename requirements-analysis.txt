@@ -1,0 +1,2 @@
+# Optional chart rendering; orchestration, reports, and unit tests use the stdlib.
+matplotlib>=3.10,<4

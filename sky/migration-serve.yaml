@@ -1,0 +1,19 @@
+# One large-model target at a time, reusing the existing two-H100 allocation.
+# Run from the prompt-transfer repository root only after the cluster is free:
+#   sky exec prompt-transfer sky/migration-serve.yaml --env TARGET_FAMILY=llama -d
+# Other TARGET_FAMILY values: qwen, gemma. No weights/dependencies are downloaded.
+name: ptx-migration-serve
+
+workdir: serving
+
+resources:
+  accelerators: H100:2
+
+envs:
+  TARGET_FAMILY: llama
+  CONTEXT_LENGTH: "32768"
+  DETERMINISTIC: "1"
+  RADIX_CACHE: "0"
+
+run: |
+  bash migration_serve.sh "${TARGET_FAMILY}"

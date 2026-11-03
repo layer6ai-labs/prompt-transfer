@@ -3,6 +3,8 @@
 # stops them and frees the GPUs. Run from the repo root:
 #   sky exec prompt-transfer sky/serve.yaml -d                  # all4
 #   sky exec prompt-transfer sky/serve.yaml --env LAYOUT=strong -d
+#   sky exec prompt-transfer sky/serve.yaml --env LAYOUT=qwen --env CONTEXT_LENGTH=32768 -d
+#   sky exec prompt-transfer sky/serve.yaml --env LAYOUT=gemma --env CONTEXT_LENGTH=32768 -d
 name: ptx-serve
 
 workdir: .
@@ -15,6 +17,9 @@ resources:
 envs:
   LAYOUT: all4
   DETERMINISTIC: "1"
+  # prompt + completion cap per request; raise it for long critic prompts
+  # (--env CONTEXT_LENGTH=32768), memory permitting in the chosen layout
+  CONTEXT_LENGTH: "8192"
 
 run: |
   bash serving/serve.sh "${LAYOUT}"
