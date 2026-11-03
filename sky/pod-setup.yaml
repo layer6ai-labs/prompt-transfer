@@ -6,5 +6,9 @@ name: ptx-setup
 
 workdir: .
 
+envs:
+  # Fetch only the selected registry layout; the default remains four executors.
+  SETUP_LAYOUT: all4
+
 run: |
-  bash serving/setup.sh
+  bash serving/setup.sh --layout "${SETUP_LAYOUT}"

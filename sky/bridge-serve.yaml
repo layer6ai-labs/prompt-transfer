@@ -1,0 +1,22 @@
+# Run from the prompt-transfer repository root, after its two GPUs are free:
+#   sky exec prompt-transfer sky/bridge-serve.yaml --env LAYOUT=bridge-qwen-llama -d
+# Other layouts: bridge-qwen-gemma, bridge-llama-gemma.
+# Sky resolves workdir relative to the CLI's current directory. Sync only
+# serving/; its contents become the remote working directory, including the
+# neighboring models.sh loaded by serve.sh. Cached weights and the existing
+# SGLang environment remain under ~/ptx; this task downloads nothing.
+name: ptx-bridge-serve
+
+workdir: serving
+
+resources:
+  accelerators: H100:2
+
+envs:
+  LAYOUT: bridge-qwen-llama
+  CONTEXT_LENGTH: "32768"
+  DETERMINISTIC: "1"
+
+# serve.sh disables radix caching by default and holds both GPUs while serving.
+run: |
+  bash serve.sh "${LAYOUT}"
